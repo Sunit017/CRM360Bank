@@ -1,0 +1,17 @@
+
+@font-face {
+  font-family: 'AvenirLTSD';
+  src: url('./assets/fonts/AvenirLTStd-Medium.otf') format('opentype');
+  font-weight: 400; 
+  font-style: normal;
+}
+
+
+html, body, #root, .App {
+  font-family: 'AvenirLTSD', sans-serif ;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

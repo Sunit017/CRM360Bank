@@ -1,0 +1,88 @@
+export const CasesByStatusColumns = [
+  {
+    field: "caseRefNumber",
+    headerName: "Case Reference Number",
+    sortable: true,
+    filter: true,
+    tooltipField: "caseRefNumber",
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    sortable: true,
+    filter: true,
+    tooltipField: "type",
+  },
+  {
+    field: "category",
+    headerName: "Category",
+    sortable: true,
+    filter: true,
+    tooltipField: "category",
+  },
+  {
+    field: "subCategory",
+    headerName: "Sub category",
+    sortable: true,
+    filter: true,
+    tooltipField: "subCategory",
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    sortable: true,
+    filter: true,
+    tooltipField: "status",
+  },
+];
+export const CasesQueueColumn = [
+  {
+    field: "caseRefNumber",
+    headerName: "Case reference number",
+    sortable: true,
+    filter: true,
+    tooltipField: "caseRefNumber",
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    sortable: true,
+    filter: true,
+    tooltipField: "type",
+  },
+  {
+    field: "category",
+    headerName: "Category",
+    sortable: true,
+    filter: true,
+    tooltipField: "category",
+  },
+  {
+    field: "subCategory",
+    headerName: "Sub category",
+    sortable: true,
+    filter: true,
+    tooltipField: "subCategory",
+  },
+  {
+    field: "subSubCategory",
+    headerName: "Sub sub category",
+    sortable: true,
+    filter: true,
+    tooltipField: "subSubCategory",
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    sortable: true,
+    filter: true,
+    tooltipField: "status",
+  },
+  {
+    field: "created",
+    headerName: "Created",
+    sortable: true,
+    filter: true,
+    tooltipField: "created",
+  },
+];

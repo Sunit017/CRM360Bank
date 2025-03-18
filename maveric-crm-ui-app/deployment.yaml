@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maveric-crm-ui-app
+  labels:
+    app: maveric-crm-ui-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maveric-crm-ui-app
+  template:
+    metadata:
+      labels:
+        app: maveric-crm-ui-app
+    spec:
+      imagePullSecrets:
+        - name: harbor-creds
+      containers:
+        - name: maveric-crm-ui-app
+          image: 172.16.238.56/newcustomer360/maveric-crm-ui-app:
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: maveric-crm-ui-app
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: maveric-crm-ui-app
