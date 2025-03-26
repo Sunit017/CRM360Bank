@@ -1,0 +1,40 @@
+server:
+    port: 8888
+spring:
+    application:
+        name: configserver
+    cloud:
+        config:
+            request-read-timeout: 10000 # in milliseconds (10 seconds)
+            request-connect-timeout: 5000 # in milliseconds (5 seconds)
+            server:
+                git:
+                    uri: http://172.16.238.105:9090/newcustomer360/configproperties.git
+                    username: RahulKumarAbhishek
+                    password: R_rudra@212
+                    default-label: main
+                    timeout: 5
+                    clone-on-start: true
+                    skip-ssl-validation: true
+                    repository:
+                        depth: 1
+#                    force-pull: true
+#        bus:
+#            enabled: true
+#    kafka:
+#          bootstrap-servers: kafka.kafka.svc.cluster.local:9092
+eureka:
+    instance:
+        preferIpAddress: true
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka
+management:
+    endpoints:
+        web:
+            exposure:
+                include: bus-refresh # Expose bus-refresh endpoint
+
+logging:
+    level:
+        org.springframework.cloud.config: DEBUG # Enable debugging for config fetching

@@ -1,0 +1,52 @@
+# server:
+#     port: 8082
+# spring:
+#     application:
+#         name: account360
+#     sql:
+#         init:
+#             mode: always
+#     datasource:
+#         initialization-mode: always
+#         schema: classpath:schema.sql
+#         url: jdbc:mysql://localhost:3306/account360
+#         username: root
+#         password: root
+#         data: classpath:data.sql
+#     jpa:
+#         defer-datasource-initialization: true
+#         hibernate:
+#             ddl-auto: update
+#         show-sql: true
+# eureka:
+#     instance:
+#         preferIpAddress: true
+#     client:
+#         serviceUrl:
+#             defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+      name: account360
+  datasource:
+    url: jdbc:mysql://mysql.mysql.svc.cluster.local:3306/account360
+    username: application
+    password: customer360sql
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none  
+    show-sql: true
+  cloud:
+    compatibility-verifier:
+      enabled: false
+eureka:
+    instance:
+        preferIpAddress: true
+    client:
+        serviceUrl:
+            defaultZone: http://eurekaserver.dev.svc.cluster.local:8080

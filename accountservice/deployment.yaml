@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accountservice
+  labels:
+    app: accountservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: accountservice
+  template:
+    metadata:
+      labels:
+        app: accountservice
+    spec:
+      imagePullSecrets:
+        - name: harbor-creds
+      containers:
+        - name: accountservice
+          image: 172.16.238.56/newcustomer360/accountservice:
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
+            - name: DB_URL
+              value: "jdbc:mysql://mysql.mysql.svc.cluster.local:3306/account360"
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev" 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: accountservice
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: accountservice

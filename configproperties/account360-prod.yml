@@ -1,0 +1,41 @@
+server:
+    port: 8082
+spring:
+    application:
+        name: account360
+    config:
+        import: optional:configserver:http://localhost:8888
+    sql:
+        init:
+            mode: always
+    datasource:
+        initialization-mode: always
+        schema: classpath:schema.sql
+        url: jdbc:mysql://localhost:3306/account360
+        username: root
+        password: root
+        data: classpath:data.sql
+    jpa:
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+eureka:
+    instance:
+        preferIpAddress: true
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+
+app:
+  name: Account360 prod Application
+  environment: production
+  timeout: 5000
+
+
+

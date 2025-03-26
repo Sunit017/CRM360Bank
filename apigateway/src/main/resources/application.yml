@@ -1,0 +1,39 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+      name: apigateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: account360
+          uri: http://accountservice.dev.svc.cluster.local:8080
+          predicates:
+            - Path=/account-service/**
+        - id: customer360
+          uri: http://customerservice.dev.svc.cluster.local:8080
+          predicates:
+            - Path=/api/customers/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://172.16.238.49:30080/realms/maveric-crm/protocol/openid-connect/certs"
+keycloak:
+  token-url: http://172.16.238.49:30080/realms/maveric-crm/protocol/openid-connect/token
+  client-id: maveric-crm-direct-access-grant-flow
+  client-secret: CLIENT_SECRET
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaserver.dev.svc.cluster.local:8080
+logging:
+  level:
+    org.springframework.security: DEBUG
+  
