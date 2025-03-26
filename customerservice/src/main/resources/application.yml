@@ -1,0 +1,23 @@
+server:
+    port: 8080
+spring:
+    application:
+        name: customer360
+    sql:
+        init:
+            mode: always
+    datasource:
+        initialization-mode: always
+        schema: classpath:schema.sql
+        url: jdbc:mysql://localhost:3306/customer360
+        username: root
+        password: root
+        data: classpath:data.sql
+    jpa:
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+    cloud:
+        compatibility-verifier:
+            enabled: false
